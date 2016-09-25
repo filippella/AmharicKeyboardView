@@ -86,6 +86,7 @@ public class AmharicKeyboardView extends RelativeLayout {
                     Editable editable = mKeyClickListener.getEditable();
                     if (editable != null) {
                         int start = mKeyClickListener.getSelectionStart();
+                        if(start == -1) return;
                         editable.insert(start, Character.toString(mAmharicChars[new Random().nextInt(mAmharicChars.length)]));
                     }
                 }
@@ -105,6 +106,7 @@ public class AmharicKeyboardView extends RelativeLayout {
                     Editable editable = mKeyClickListener.getEditable();
                     if (editable != null && editable.length() > 0) {
                         int start = mKeyClickListener.getSelectionStart();
+                        if(start == -1) return;
                         editable.delete(start - 1, start);
                     }
                 }

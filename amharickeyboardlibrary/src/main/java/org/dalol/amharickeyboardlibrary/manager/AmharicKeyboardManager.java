@@ -100,11 +100,17 @@ public final class AmharicKeyboardManager {
     private OnKeyClickListener mKeyClickListener = new OnKeyClickListener() {
         @Override
         public Editable getEditable() {
+            if (mEditText == null) {
+                return null;
+            }
             return mEditText.getText();
         }
 
         @Override
         public int getSelectionStart() {
+            if (mEditText == null) {
+                return -1;
+            }
             return mEditText.getSelectionStart();
         }
     };
