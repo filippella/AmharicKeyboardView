@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AmharicKeyboardView">
+        <attr name="amharicKeyGap" format="dimension" />
+        <attr name="amharicKeyHeight" format="dimension" />
+    </declare-styleable>
+</resources>
