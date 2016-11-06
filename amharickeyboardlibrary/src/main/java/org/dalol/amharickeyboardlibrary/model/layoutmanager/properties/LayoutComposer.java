@@ -14,18 +14,29 @@
  * limitations under the License.
  */
 
-package org.dalol.amharickeyboardlibrary.model.callback;
+package org.dalol.amharickeyboardlibrary.model.layoutmanager.properties;
 
-import android.widget.EditText;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>
  * @version 1.0.0
- * @since 9/25/2016
+ * @since 9/30/2016
  */
-public interface OnKeyClickListener {
+public class LayoutComposer {
 
-    EditText getComponent();
+    public static class Builder {
 
-    void onTextChanged(CharSequence text);
+        private List<Row> rows = new ArrayList<>();
+
+        public Builder addRow(Row row) {
+            rows.add(row);
+            return Builder.this;
+        }
+
+        public Builder addKeyButton(KeyButton keyButton) {
+            return this;
+        }
+    }
 }

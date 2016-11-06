@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.dalol.amharickeyboardlibrary.model;
+package org.dalol.amharickeyboardlibrary.model.callback;
 
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>
  * @version 1.0.0
- * @since 9/25/2016
+ * @since 9/30/2016
  */
-public interface IKeyboardProperty {
+public interface OnTextChangeListener {
 
-    int getKeyboardHeight();
+    void onTextChanged(CharSequence text);
 }

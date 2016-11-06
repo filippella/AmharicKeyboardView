@@ -2,25 +2,23 @@ package org.dalol.amharickeyboardview;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
-import org.dalol.amharickeyboardlibrary.manager.AmharicKeyboardManager;
+import org.dalol.amharickeyboardlibrary.controller.manager.DalolKeyboardManager;
+import org.dalol.amharickeyboardlibrary.model.layoutmanager.TableKeyboardManager;
+import org.dalol.amharickeyboardlibrary.model.layoutmanager.properties.KeyButton;
+import org.dalol.amharickeyboardlibrary.model.layoutmanager.properties.LayoutComposer;
+import org.dalol.amharickeyboardlibrary.model.layoutmanager.properties.Row;
 import org.dalol.amharickeyboardview.keyinfo.AmharicKeyTypography;
 import org.dalol.amharickeyboardview.keyinfo.AmharicKeyTypographyMap;
 import org.dalol.amharickeyboardview.keyinfo.IKeyTypography;
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private View view;
     private EditText edditText;
 
-    final AmharicKeyboardManager manager = new AmharicKeyboardManager();
+    DalolKeyboardManager manager = new DalolKeyboardManager();
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
@@ -67,7 +65,61 @@ public class MainActivity extends AppCompatActivity {
 
         edditText = (EditText) findViewById(R.id.inputTxt);
 
-        manager.setInputFieldToHandle(this, edditText);
+        TableKeyboardManager layoutManager = new TableKeyboardManager(4, 7);
+
+        boolean tableTruthGrid[][] = new boolean[3][7];
+        Row row1 = new Row(layoutManager);
+        KeyButton row1Button1 = new KeyButton(3, 2);
+//        KeyButton row1Button2 = new KeyButton(1, 3);
+//        KeyButton row1Button3 = new KeyButton();
+//        KeyButton row1Button4 = new KeyButton();
+        KeyButton row1Button4 = new KeyButton(1, 2);
+        KeyButton row1Button5 = new KeyButton(3, 1);
+        KeyButton row1Button6 = new KeyButton();
+        KeyButton row1Button7 = new KeyButton(2, 1);
+
+
+        row1.addKeyButton(row1Button1);
+        //row1.addKeyButton(row1Button2);
+//        row1.addKeyButton(row1Button3);
+        row1.addKeyButton(row1Button4);
+        row1.addKeyButton(row1Button5);
+        row1.addKeyButton(row1Button6);
+        row1.addKeyButton(row1Button7);
+
+        layoutManager.addRow(row1);
+
+        Row row2 = new Row(layoutManager);
+
+        //row2.addKeyButton(new KeyButton(2, 3));
+        //row2.addKeyButton(new KeyButton(2, 2));
+        row2.addKeyButton(new KeyButton());
+        row2.addKeyButton(new KeyButton());
+        row2.addKeyButton(new KeyButton());
+
+        layoutManager.addRow(row2);
+
+        Row row3 = new Row(layoutManager);
+
+        row3.addKeyButton(new KeyButton());
+        //row2.addKeyButton(new KeyButton(2, 2));
+        row3.addKeyButton(new KeyButton());
+        row3.addKeyButton(new KeyButton());
+        row3.addKeyButton(new KeyButton());
+
+        //layoutManager.addRow(row3);
+
+        manager.initKeyboardIntegration(this, edditText, layoutManager);
+
+        boolean[][] keyGrid = layoutManager.getKeyGrid();
+        for (int i = 0; i < keyGrid.length; i++) {
+            boolean[] colGrid = keyGrid[i];
+            for (int j = 0; j < colGrid.length; j++) {
+                boolean b = colGrid[i];
+                Log.d(TAG, String.format("GridVals [%d][%d][%b]", i, j, b));
+            }
+        }
+
 
         Button fakeKeyBoard = (Button) findViewById(R.id.fakeKeyBoard);
         fakeKeyBoard.setOnClickListener(new View.OnClickListener() {

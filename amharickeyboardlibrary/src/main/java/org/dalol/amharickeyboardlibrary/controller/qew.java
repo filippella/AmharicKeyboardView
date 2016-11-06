@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-package org.dalol.amharickeyboardlibrary.model.callback;
-
-import android.widget.EditText;
+package org.dalol.amharickeyboardlibrary.controller;
 
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>
  * @version 1.0.0
- * @since 9/25/2016
+ * @since 9/30/2016
  */
-public interface OnKeyClickListener {
-
-    EditText getComponent();
-
-    void onTextChanged(CharSequence text);
+public class qew {
 }

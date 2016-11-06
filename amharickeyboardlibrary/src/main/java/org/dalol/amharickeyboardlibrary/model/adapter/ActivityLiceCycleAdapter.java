@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.dalol.amharickeyboardlibrary.adapter;
+package org.dalol.amharickeyboardlibrary.model.adapter;
 
 import android.app.Activity;
 import android.app.Application;

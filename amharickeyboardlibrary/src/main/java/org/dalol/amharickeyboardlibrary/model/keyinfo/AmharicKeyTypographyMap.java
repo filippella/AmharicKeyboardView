@@ -1,4 +1,4 @@
-package org.dalol.amharickeyboardlibrary.keyinfo;
+package org.dalol.amharickeyboardlibrary.model.keyinfo;
 
 import java.util.ArrayList;
 import java.util.List;

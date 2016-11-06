@@ -1,4 +1,4 @@
-package org.dalol.amharickeyboardlibrary.keyinfo;
+package org.dalol.amharickeyboardlibrary.model.keyinfo;
 
 import java.io.Serializable;
 

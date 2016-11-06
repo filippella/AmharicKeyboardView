@@ -1,4 +1,4 @@
-package org.dalol.amharickeyboardlibrary.keyinfo;
+package org.dalol.amharickeyboardlibrary.model.keyinfo;
 
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>

@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dalol.amharickeyboardlibrary.manager;
+package org.dalol.amharickeyboardlibrary.controller.manager;
 
 import android.app.Activity;
-import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,20 +23,26 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+import org.dalol.amharickeyboardlibrary.base.BaseKeyboardLayoutManager;
+import org.dalol.amharickeyboardlibrary.controller.utilities.KeyboardUtils;
 import org.dalol.amharickeyboardlibrary.model.callback.OnKeyClickListener;
-import org.dalol.amharickeyboardlibrary.utilities.KeyboardUtils;
+import org.dalol.amharickeyboardlibrary.model.callback.OnTextChangeListener;
 import org.dalol.amharickeyboardlibrary.view.AmharicKeyboardView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>
  * @version 1.0.0
  * @since 9/25/2016
  */
-public final class AmharicKeyboardManager {
+public final class DalolKeyboardManager {
 
     private Activity mActivity;
     private EditText mEditText;
     private AmharicKeyboardView mKeyboardView;
+    private List<OnTextChangeListener> mTextChangeListeners = new ArrayList<>();
 
     /**
      * This method is used to setup custom keyboard with the desired edit text input field found inside the activity
@@ -45,15 +50,54 @@ public final class AmharicKeyboardManager {
      * @param activity
      * @param editText
      */
-    public void setInputFieldToHandle(Activity activity, EditText editText) {
-        if (activity == null) {
-            throw new NullPointerException("Activity should not be null");
+    public void initKeyboardIntegration(Activity activity, EditText editText) {
+        if (activity == null || editText == null) {
+            throw new NullPointerException("Keyboard elements should not be null!");
         }
         mActivity = activity;
         mEditText = editText;
+        //mEditText.setFocusable(false);
         ensureToHideNativeKeyboard(mActivity.getWindow());
         mKeyboardView = new AmharicKeyboardView(mActivity);
-        mKeyboardView.setKeyClickListener(mKeyClickListener);
+        mKeyboardView.setKeyClickListener(new OnKeyClickListener() {
+            @Override
+            public EditText getComponent() {
+                return mEditText;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text) {
+                for (OnTextChangeListener listener : mTextChangeListeners) {
+                    listener.onTextChanged(text);
+                }
+            }
+        });
+        setUpInputField();
+    }
+
+    public void initKeyboardIntegration(Activity activity, EditText editText, BaseKeyboardLayoutManager layoutManager) {
+        if (activity == null || editText == null) {
+            throw new NullPointerException("Keyboard elements should not be null!");
+        }
+        mActivity = activity;
+        mEditText = editText;
+        //mEditText.setFocusable(false);
+        ensureToHideNativeKeyboard(mActivity.getWindow());
+        mKeyboardView = new AmharicKeyboardView(mActivity);
+        mKeyboardView.setKeyboardManager(layoutManager);
+        mKeyboardView.setKeyClickListener(new OnKeyClickListener() {
+            @Override
+            public EditText getComponent() {
+                return mEditText;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text) {
+                for (OnTextChangeListener listener : mTextChangeListeners) {
+                    listener.onTextChanged(text);
+                }
+            }
+        });
         setUpInputField();
     }
 
@@ -97,21 +141,21 @@ public final class AmharicKeyboardManager {
         mKeyboardView.hideKeyboard();
     }
 
-    private OnKeyClickListener mKeyClickListener = new OnKeyClickListener() {
-        @Override
-        public Editable getEditable() {
-            if (mEditText == null) {
-                return null;
-            }
-            return mEditText.getText();
-        }
-
-        @Override
-        public int getSelectionStart() {
-            if (mEditText == null) {
-                return -1;
-            }
-            return mEditText.getSelectionStart();
-        }
-    };
+//    private OnKeyClickListener mKeyClickListener = new OnKeyClickListener() {
+//        @Override
+//        public Editable getComponent() {
+//            if (mEditText == null) {
+//                return null;
+//            }
+//            return mEditText.getText();
+//        }
+//
+//        @Override
+//        public int getSelectionStart() {
+//            if (mEditText == null) {
+//                return -1;
+//            }
+//            return mEditText.getSelectionStart();
+//        }
+//    };
 }

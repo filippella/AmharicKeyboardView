@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.dalol.amharickeyboardlibrary.utilities;
+package org.dalol.amharickeyboardlibrary.controller.utilities;
 
 import android.app.Activity;
 import android.content.Context;
