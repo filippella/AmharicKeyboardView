@@ -16,9 +16,7 @@
   -->
 
 <resources>
-    <dimen name="key_padding_size">3dp</dimen>
 
     <dimen name="key_height">44dip</dimen>
-    <dimen name="keyboard_height">350dip</dimen>
     <dimen name="medium_height">48dip</dimen>
 </resources>

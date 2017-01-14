@@ -1,5 +1,33 @@
 apply plugin: 'com.android.library'
 
+//ext {
+////    PUBLISH_GROUP_ID = ''
+////    PUBLISH_ARTIFACT_ID = 'amharickeyboardlibrary'
+////    PUBLISH_VERSION = '1.0.0'
+//
+//    bintrayRepo = 'maven'
+//    bintrayName = 'amharic-keyboard-library'
+//
+//    publishedGroupId = 'org.dalol.amharickeyboardlibrary'
+//    libraryName = 'amharickeyboardlibrary'
+//    artifact = 'amharic-keyboard-library'
+//
+//    libraryDescription = 'An Amharic Keyboard View and Controller on Android'
+//
+//    siteUrl = 'https://github.com/filippella/AmharicKeyboardView'
+//    gitUrl = 'https://github.com/filippella/AmharicKeyboardView.git'
+//
+//    libraryVersion = '1.0.0'
+//
+//    developerId = 'filippella'
+//    developerName = 'Filippo Engidashet'
+//    developerEmail = 'filippo.eng@gmail.com'
+//
+//    licenseName = 'The Apache Software License, Version 2.0'
+//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//    allLicenses = ["Apache-2.0"]
+//}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "23.0.3"
@@ -23,3 +51,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
 }
+
+//apply from: 'https://raw.githubusercontent.com/filippella/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/filippella/JCenter/master/bintrayv1.gradle'

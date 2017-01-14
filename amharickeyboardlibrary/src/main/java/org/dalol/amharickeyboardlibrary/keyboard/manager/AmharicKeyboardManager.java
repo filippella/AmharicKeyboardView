@@ -207,8 +207,9 @@ public class AmharicKeyboardManager {
     }
 
     public boolean onBackPressed() {
+        boolean isShowing = showing;
         if(showing) hideKeyboard();
-        return true;
+        return isShowing;
     }
 
     private void animateKeyboard(float from, float to) {
