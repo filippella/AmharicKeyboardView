@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.dalol.amharickeyboardlibrary.keyboard.model;
+package org.dalol.amharickeyboardlibrary.keyboard.base;
+
+import org.dalol.amharickeyboardlibrary.keyboard.model.InputKeysInfo;
 
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>

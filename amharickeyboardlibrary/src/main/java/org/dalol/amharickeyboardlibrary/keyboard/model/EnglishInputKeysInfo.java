@@ -17,6 +17,7 @@
 package org.dalol.amharickeyboardlibrary.keyboard.model;
 
 import org.dalol.amharickeyboardlibrary.R;
+import org.dalol.amharickeyboardlibrary.keyboard.base.BaseInputKeysInfo;
 
 import java.util.ArrayList;
 import java.util.List;
