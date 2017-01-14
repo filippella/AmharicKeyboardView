@@ -24,7 +24,7 @@ import org.dalol.amharickeyboardlibrary.keyboard.utilities.KeyboardUtils;
 import org.dalol.amharickeyboardlibrary.keyboard.view.InputKeyboardView;
 
 /**
- * @author Filippo Engidashet <filippo.eng@gmail.com>
+ * @author Filippo Engidashet &#60;filippo.eng@gmail.com&#62;
  * @version 1.0.0
  * @since 1/14/2017
  */

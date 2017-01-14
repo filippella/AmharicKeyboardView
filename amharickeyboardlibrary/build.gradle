@@ -1,32 +1,32 @@
 apply plugin: 'com.android.library'
 
-//ext {
-////    PUBLISH_GROUP_ID = ''
-////    PUBLISH_ARTIFACT_ID = 'amharickeyboardlibrary'
-////    PUBLISH_VERSION = '1.0.0'
-//
-//    bintrayRepo = 'maven'
-//    bintrayName = 'amharic-keyboard-library'
-//
-//    publishedGroupId = 'org.dalol.amharickeyboardlibrary'
-//    libraryName = 'amharickeyboardlibrary'
-//    artifact = 'amharic-keyboard-library'
-//
-//    libraryDescription = 'An Amharic Keyboard View and Controller on Android'
-//
-//    siteUrl = 'https://github.com/filippella/AmharicKeyboardView'
-//    gitUrl = 'https://github.com/filippella/AmharicKeyboardView.git'
-//
-//    libraryVersion = '1.0.0'
-//
-//    developerId = 'filippella'
-//    developerName = 'Filippo Engidashet'
-//    developerEmail = 'filippo.eng@gmail.com'
-//
-//    licenseName = 'The Apache Software License, Version 2.0'
-//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//    allLicenses = ["Apache-2.0"]
-//}
+ext {
+//    PUBLISH_GROUP_ID = ''
+//    PUBLISH_ARTIFACT_ID = 'amharickeyboardlibrary'
+//    PUBLISH_VERSION = '1.0.0'
+
+    bintrayRepo = 'maven'
+    bintrayName = 'amharickeyboardlibrary'
+
+    publishedGroupId = 'org.dalol.amharickeyboardlibrary'
+    libraryName = 'amharickeyboardlibrary'
+    artifact = 'amharic-keyboard-library'
+
+    libraryDescription = 'An Amharic Keyboard View and Controller on Android'
+
+    siteUrl = 'https://github.com/filippella/AmharicKeyboardView'
+    gitUrl = 'https://github.com/filippella/AmharicKeyboardView.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'filippella'
+    developerName = 'Filippo Engidashet'
+    developerEmail = 'filippo.eng@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 24
@@ -52,5 +52,105 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
 }
 
-//apply from: 'https://raw.githubusercontent.com/filippella/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/filippella/JCenter/master/bintrayv1.gradle'
+apply plugin: 'com.jfrog.bintray'
+
+version = "1.0.0"
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'amharickeyboardlibrary'
+        desc = 'An Amharic Keyboard View and Controller on Android'
+        websiteUrl = 'https://github.com/filippella/AmharicKeyboardView'
+        vcsUrl = 'https://github.com/filippella/AmharicKeyboardView.git'
+        licenseName = 'The Apache Software License, Version 2.0'
+        licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+        allLicenses = ["Apache-2.0"]
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("bintray.gpg.password")
+                //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
+}
+
+//============================================
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = publishedGroupId                               // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'org.dalol.amharickeyboardlibrary'
+                artifactId 'amharic-keyboard-library'
+
+                // Add your description here
+                name 'amharickeyboardlibrary'
+                description 'An Amharic Keyboard View and Controller on Android'
+                url = 'https://github.com/filippella/AmharicKeyboardView.git'
+
+                // Set your license
+                licenseName = 'The Apache Software License, Version 2.0'
+                licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                allLicenses = ["Apache-2.0"]
+
+                developers {
+                    developer {
+                        id = 'filippella'
+                        name = 'Filippo Engidashet'
+                        email = 'filippo.eng@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'https://github.com/filippella/AmharicKeyboardView.git'
+                    developerConnection = 'https://github.com/filippella/AmharicKeyboardView.git'
+                    url = 'https://github.com/filippella/AmharicKeyboardView'
+                }
+            }
+        }
+    }
+}

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Filippo Engidashet <filippo.eng@gmail.com>
+ * @author Filippo Engidashet &#60;filippo.eng@gmail.com&#62;
  * @version 1.0.0
  * @since 12/18/2016
  */

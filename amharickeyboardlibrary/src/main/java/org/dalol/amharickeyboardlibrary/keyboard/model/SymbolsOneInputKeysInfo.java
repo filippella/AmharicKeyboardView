@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Filippo Engidashet <filippo.eng@gmail.com>
+ * @author Filippo Engidashet &#60;filippo.eng@gmail.com&#62;
  * @version 1.0.0
  * @since 12/29/2016
  */
@@ -60,11 +60,6 @@ public class SymbolsOneInputKeysInfo extends BaseInputKeysInfo {
 
     private void populateKeys() {
         inputKeysRows = new ArrayList<>();
-
-
-        //+×÷=%_€£¥₩!@#$/^&*()-'":;,?.
-
-        //`~\|<>{}[]°•○●□■♤♡♢♧☆▪¤《》¡¿
 
         InputKeysRow keysRow1 = new InputKeysRow();
         keysRow1.addKeyInfo(new KeyInfo("1", 1, true, KeyInfo.KEY_EVENT_NORMAL));

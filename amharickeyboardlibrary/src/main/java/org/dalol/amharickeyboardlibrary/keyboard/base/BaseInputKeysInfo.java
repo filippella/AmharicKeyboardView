@@ -19,7 +19,7 @@ package org.dalol.amharickeyboardlibrary.keyboard.base;
 import org.dalol.amharickeyboardlibrary.keyboard.model.InputKeysInfo;
 
 /**
- * @author Filippo Engidashet <filippo.eng@gmail.com>
+ * @author Filippo Engidashet &#60;filippo.eng@gmail.com&#62;
  * @version 1.0.0
  * @since 1/4/2017
  */
