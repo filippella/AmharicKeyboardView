@@ -18,10 +18,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-
-        mavenCentral()
         maven {
-            url "https://repository-achartengine.forge.cloudbees.com/snapshot/"
+            url  "http://dl.bintray.com/filippella/maven"
         }
     }
 }

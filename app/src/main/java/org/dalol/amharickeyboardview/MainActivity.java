@@ -10,23 +10,21 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private EditText edditText;
-
-    AmharicKeyboardManager manager = new AmharicKeyboardManager();
+    private AmharicKeyboardManager keyboardManager = new AmharicKeyboardManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edditText = (EditText) findViewById(R.id.inputTxt);
-        manager.init(this, edditText, true);
-        manager.setAnimationSpeed(250L);
+        EditText edditText = (EditText) findViewById(R.id.inputTxt);
+        keyboardManager.init(this, edditText, true);
+        keyboardManager.setAnimationSpeed(250L);
     }
 
     @Override
     public void onBackPressed() {
-        if(!manager.onBackPressed()) {
+        if(!keyboardManager.onBackPressed()) {
             super.onBackPressed();
         }
     }
