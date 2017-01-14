@@ -116,7 +116,7 @@ public class EnglishInputKeysInfo extends BaseInputKeysInfo {
         keysRow5.addKeyInfo(new KeyInfo("?123", 2, false, KeyInfo.KEY_EVENT_SYMBOLS_ONE));
         keysRow5.addKeyInfo(new KeyInfo(R.mipmap.ic_space_bar_white_24dp, 3, false, KeyInfo.KEY_EVENT_SPACE).setPadding(9));
         keysRow5.addKeyInfo(new KeyInfo(".", 1, false, KeyInfo.KEY_EVENT_NORMAL));
-        keysRow5.addKeyInfo(new KeyInfo(R.mipmap.ic_subdirectory_arrow_left, 1, false, KeyInfo.KEY_EVENT_NORMAL).setPadding(8));
+        keysRow5.addKeyInfo(new KeyInfo(R.mipmap.ic_subdirectory_arrow_left, 1, false, KeyInfo.KEY_EVENT_NEW_LINE).setPadding(8));
         keysRow5.addKeyInfo(new KeyInfo(R.mipmap.ic_send, 1, false, KeyInfo.KEY_EVENT_ENTER).setPadding(8));
 
         inputKeysRows.add(keysRow1);
