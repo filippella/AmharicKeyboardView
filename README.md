@@ -44,7 +44,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     
     
-    compile 'org.dalol.amharickeyboardlibrary:amharickeyboardlibrary:1.0.0@aar'
+    compile 'org.dalol.amharickeyboardlibrary:amharickeyboardlibrary:2.0.0@aar'
 }
 
 ```
