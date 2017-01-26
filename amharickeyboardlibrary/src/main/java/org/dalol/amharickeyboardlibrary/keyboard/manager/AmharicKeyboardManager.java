@@ -14,12 +14,13 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
+import org.dalol.amharickeyboardlibrary.keyboard.callback.OnInputKeyListener;
 import org.dalol.amharickeyboardlibrary.keyboard.model.EnglishInputKeysInfo;
 import org.dalol.amharickeyboardlibrary.keyboard.model.GeezInputKeysInfo;
 import org.dalol.amharickeyboardlibrary.keyboard.model.InputKeysInfo;
+import org.dalol.amharickeyboardlibrary.keyboard.model.KeyboardType;
 import org.dalol.amharickeyboardlibrary.keyboard.model.SymbolsOneInputKeysInfo;
 import org.dalol.amharickeyboardlibrary.keyboard.model.SymbolsTwoInputKeysInfo;
-import org.dalol.amharickeyboardlibrary.keyboard.callback.OnInputKeyListener;
 import org.dalol.amharickeyboardlibrary.keyboard.utilities.KeyboardUtils;
 import org.dalol.amharickeyboardlibrary.keyboard.view.InputKeyboardView;
 
@@ -33,6 +34,8 @@ public class AmharicKeyboardManager {
     private Activity mActivity;
     private EditText mEditText;
     private ViewGroup mRootView;
+    private KeyboardType mKeyboardType;
+    //private KeyboardConfiguration mConfiguration;
     private InputKeysInfo geezInput, englishLowercase, englishUppercase, symbolsOne, symbolsTwo;
     private InputKeyboardView mKeyboardView;
     private boolean showing;
@@ -40,6 +43,21 @@ public class AmharicKeyboardManager {
     private boolean uppercase;
     private boolean mHideInitially;
     private long mAnimationSpeed;
+
+    public AmharicKeyboardManager() {
+        this(KeyboardType.GEEZ);
+    }
+
+    public AmharicKeyboardManager(KeyboardType keyboardType) {
+        mKeyboardType = keyboardType;
+    }
+
+//    public AmharicKeyboardManager(KeyboardConfiguration configuration) {
+//        if (configuration == null) {
+//            throw new NullPointerException("KeyboardConfiguration must not be null!");
+//        }
+//        mConfiguration = configuration;
+//    }
 
     public void init(Activity activity, EditText editText, boolean hideInitially) {
         if (activity == null || editText == null) {
@@ -85,7 +103,12 @@ public class AmharicKeyboardManager {
         englishUppercase = new EnglishInputKeysInfo(false);
         symbolsOne = new SymbolsOneInputKeysInfo();
         symbolsTwo = new SymbolsTwoInputKeysInfo();
-        mKeyboardView.setInputKeyboard(geezInput);
+
+        mKeyboardView.setInputKeyboard(mKeyboardType == KeyboardType.GEEZ ? geezInput
+                : mKeyboardType == KeyboardType.ENGLISH_CASE_CAPITAL ? englishUppercase :
+                mKeyboardType == KeyboardType.ENGLISH_CASE_LOWER ? englishLowercase :
+                        mKeyboardType == KeyboardType.SYMBOL_TYPE_ONE ? symbolsOne : symbolsTwo);
+
         mKeyboardView.setOnInputKeyListener(new OnInputKeyListener() {
             @Override
             public void onClick(String keyLabel) {

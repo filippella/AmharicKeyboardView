@@ -5,12 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import org.dalol.amharickeyboardlibrary.keyboard.manager.AmharicKeyboardManager;
+import org.dalol.amharickeyboardlibrary.keyboard.model.KeyboardType;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private AmharicKeyboardManager keyboardManager = new AmharicKeyboardManager();
+    private AmharicKeyboardManager keyboardManager = new AmharicKeyboardManager(KeyboardType.ENGLISH_CASE_CAPITAL);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

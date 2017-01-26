@@ -118,7 +118,6 @@ public class InputKeyboardView extends LinearLayout {
         setMeasuredDimension(ViewGroup.LayoutParams.MATCH_PARENT, inputKeysInfo.getKeysRowList().size() * mKeyHeight);
         addView(modifiersContainer);
         Context context = getContext();
-        setBackgroundColor(Color.parseColor("#45ffcc"));
 
         List<InputKeysRow> keysRowList = mInputKeysInfo.getKeysRowList();
 
