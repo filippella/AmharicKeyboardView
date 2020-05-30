@@ -9,7 +9,7 @@ This project library helps in handling ethiopian keyboard input for a given edit
 
 Resolving artifacts using Gradle
 
-```java
+```gradle
 allprojects {
     repositories {
         jcenter()
@@ -23,7 +23,7 @@ allprojects {
 
 Adding Gradle dependencies
 
-```
+```gradle
 apply plugin: 'com.android....
 
 android {
@@ -51,7 +51,7 @@ dependencies {
 
 Usage inside an Actvity
 
-```
+```java
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 Usage inside a Fragment
 
-```
+```java
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
